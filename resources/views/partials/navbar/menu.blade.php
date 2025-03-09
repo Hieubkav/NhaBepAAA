@@ -85,14 +85,7 @@
             <div class="pl-6 space-y-1" x-show="openCategory" x-transition>
                 <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Tủ Bếp</a>
                 <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Kệ Bếp</a>
-                <div class="space-y-1">
-                    <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Phụ Kiện</a>
-                    <div class="pl-6">
-                        <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Bồn Rửa Chén</a>
-                        <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Máy Hút Mùi</a>
-                        <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Bếp Điện Từ</a>
-                    </div>
-                </div>
+                <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Phụ Kiện</a>
             </div>
         </div>
         <a href="/about"

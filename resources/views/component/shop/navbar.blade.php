@@ -8,7 +8,8 @@
             </a>
 
             {{-- Main Navigation Menu --}}
-            @include('component.shop._nav-menu')
+            @include('partials.navbar.menu')
+
 
             {{-- Actions --}}
             <div class="flex items-center space-x-6">
@@ -46,7 +47,7 @@
                 </svg>
             </button>
         </div>
-        @include('component.shop._nav-menu')
+        @include('partials.navbar.menu', ['mobile' => true])
     </div>
 
     {{-- Overlay untuk click outside --}}

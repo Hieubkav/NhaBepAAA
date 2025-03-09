@@ -1,19 +1,20 @@
 {{-- Video Carousel Container --}}
-<div class="relative h-[500px] md:h-[600px] w-full overflow-hidden rounded-2xl">
+<div class="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-2xl">
     {{-- Background Overlay --}}
     <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 mix-blend-overlay pointer-events-none"></div>
 
     {{-- Video Container --}}
     <div class="relative w-full h-full transform-gpu">
         <video
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover min-h-[250px] md:min-h-[400px]"
             autoplay
             loop
             muted
             playsinline
             poster="{{ asset('images/logo.webp') }}"
         >
-            <source src="https://enic.vn/wp-content/uploads/2024/07/video-desktop-1.mp4" type="video/mp4">
+            <source src="https://enic.vn/wp-content/uploads/2024/07/video-desktop-1.mp4" type="video/mp4"
+                    type="video/mp4">
         </video>
 
         {{-- Video Overlay Gradient --}}
@@ -29,7 +30,7 @@
 
     {{-- Modern Text Overlay with Glassmorphism --}}
     <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center
-                bg-black/30 backdrop-blur-md rounded-xl px-5 py-3 text-base md:text-xl lg:text-2xl font-bold
+                bg-black/30 backdrop-blur-md rounded px-5 py-3 text-base md:text-xl lg:text-2xl font-bold
                 shadow-lg border border-white/20
                 transform-gpu hover:scale-105 transition-all duration-300 z-10
                 motion-safe:hover:backdrop-blur-lg">
@@ -38,11 +39,6 @@
         <span class="text-white">chọn AAA</span>
     </div>
 
-    {{-- Mobile Poster Fallback --}}
-    <div class="absolute inset-0 bg-cover bg-center md:hidden"
-         style="background-image: url('{{ asset('images/logo.webp') }}');">
-    </div>
-</div>
 
 {{-- Video Autoplay Check --}}
 <script>
@@ -52,8 +48,6 @@
         // Check if video can autoplay
         video.play().catch(function(error) {
             console.log("Video autoplay failed:", error);
-            // Show poster image if autoplay fails
-            video.closest('.relative').querySelector('.bg-cover').style.display = 'block';
         });
 
         // Optimize video playback
@@ -69,4 +63,26 @@
 
         observer.observe(video);
     });
+
+    // Lazy loading optimization
+    if ('loading' in HTMLImageElement.prototype) {
+        const video = document.querySelector('video');
+        video.loading = 'lazy';
+    }
+
+    // Preload video for better performance
+    const video = document.querySelector('video');
+    video.preload = 'metadata';
 </script>
+
+<style>
+    /* Tối ưu hiệu năng video */
+    video {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+</style>
+</div>
