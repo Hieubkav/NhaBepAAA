@@ -1,9 +1,9 @@
 <div class="space-y-4">
-    <h3 class="text-xl font-heading font-semibold mb-4 text-gray-light">Showroom AAA</h3>
+    <h3 class="text-xl font-heading font-semibold mb-4 text-white">Showroom AAA</h3>
     <div class="space-y-4">
         <div>
             <p class="font-semibold text-white/90">Showroom Hà Nội</p>
-            <p class="text-gray-light text-sm">502 Xã Đàn, Nam Đồng, Đống Đa</p>
+            <p class="text-white text-sm">502 Xã Đàn, Nam Đồng, Đống Đa</p>
             <a href="#" class="text-furniture-light text-sm hover:text-white flex items-center mt-1
                               transition-all duration-300 hover:translate-x-1 group">
                 <svg class="w-4 h-4 mr-1 transition-transform duration-300 group-hover:scale-110"
@@ -16,7 +16,7 @@
         </div>
         <div>
             <p class="font-semibold text-white/90">Showroom TP.HCM</p>
-            <p class="text-gray-light text-sm">30-32-34 Đinh Thị Thi, Thủ Đức</p>
+            <p class="text-white text-sm">30-32-34 Đinh Thị Thi, Thủ Đức</p>
             <a href="#" class="text-furniture-light text-sm hover:text-white flex items-center mt-1
                               transition-all duration-300 hover:translate-x-1 group">
                 <svg class="w-4 h-4 mr-1 transition-transform duration-300 group-hover:scale-110"

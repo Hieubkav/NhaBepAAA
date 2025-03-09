@@ -1,5 +1,5 @@
 <div class="space-y-4">
-    <h3 class="text-xl font-heading font-semibold mb-4 text-gray-light">Fanpage</h3>
+    <h3 class="text-xl font-heading font-semibold mb-4 text-white">Fanpage</h3>
 
     {{-- Facebook Page Plugin --}}
     <div class="bg-furniture/10 backdrop-blur-sm rounded-lg p-4 w-full max-w-[300px]

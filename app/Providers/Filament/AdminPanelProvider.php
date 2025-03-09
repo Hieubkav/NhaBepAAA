@@ -28,12 +28,12 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('Đa Khoa Ngọc Nhân')
+            ->brandName('Nhà Bếp AAA')
             ->profile(isSimple: false)
             ->login()
             ->colors([
-                'primary' => Color::Green,
-                'secondary' => Color::Blue,
+                'primary' => Color::Red,
+                'secondary' => Color::Gray,
             ])
             ->brandLogo(asset('images/logo.webp'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

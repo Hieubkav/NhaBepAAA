@@ -1,6 +1,6 @@
 <div class="space-y-4">
-    <h3 class="text-xl font-heading font-semibold mb-4 text-gray-light">Hỗ Trợ Khách Hàng</h3>
-    <ul class="space-y-2 text-gray-light">
+    <h3 class="text-xl font-heading font-semibold mb-4 text-white">Hỗ Trợ Khách Hàng</h3>
+    <ul class="space-y-2 text-white">
         <li>
             <a href="#" class="hover:text-white transition-all duration-300 group
                               flex items-center hover:translate-x-1">

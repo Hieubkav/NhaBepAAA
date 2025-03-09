@@ -1,10 +1,10 @@
 <div class="space-y-8">
     {{-- Contact Section --}}
     <div>
-        <h3 class="text-xl font-heading font-semibold mb-4 text-gray-light">Tổng Đài</h3>
+        <h3 class="text-xl font-heading font-semibold mb-4 text-white">Tổng Đài</h3>
         <div class="space-y-2">
             <a href="tel:1900xxxx"
-               class="block text-gray-light hover:text-white transition-all duration-300 group
+               class="block text-white hover:text-white transition-all duration-300 group
                       flex items-center hover:translate-x-1">
                 <svg class="w-5 h-5 mr-2 text-furniture-light transition-transform duration-300
                            group-hover:text-white group-hover:scale-110"
@@ -17,7 +17,7 @@
                 </span>
             </a>
             <a href="tel:0xxxxx"
-               class="block text-gray-light hover:text-white transition-all duration-300 group
+               class="block text-white hover:text-white transition-all duration-300 group
                       flex items-center hover:translate-x-1">
                 <svg class="w-5 h-5 mr-2 text-furniture-light transition-transform duration-300
                            group-hover:text-white group-hover:scale-110"
@@ -32,5 +32,5 @@
         </div>
     </div>
 
-    
+
 </div>
