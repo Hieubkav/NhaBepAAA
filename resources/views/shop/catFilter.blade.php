@@ -1,19 +1,5 @@
 @extends('layouts.shop')
 
 @section('content')
-    <!-- Filter Bar -->
-    <div x-data="{
-        categories: [],
-        sortBy: 'newest',
-        search: '',
-        productCount: 100,
-        displayedCount: 10
-    }" class="container mx-auto px-4 py-8">
-
-        <!-- Filter và Search Bar -->
-        @include('component.catFilter.filterAndSearchBar')
-
-        <!-- Products Grid -->
-        @include('component.catFilter.productsGrid')
-    </div>
+    <livewire:cat-filter :cats="$cats" :products="$products" :current_cat_id="$current_cat_id" />
 @endsection
