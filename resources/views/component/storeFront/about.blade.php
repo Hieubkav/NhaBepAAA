@@ -14,12 +14,7 @@
             <p class="text-gray mb-4 leading-relaxed">
                 AAA không ngừng đổi mới và sáng tạo, mang đến những giải pháp tối ưu cho không gian bếp hiện đại. Chúng tôi hiểu rằng căn bếp không chỉ là nơi nấu nướng, mà còn là trái tim của mỗi gia đình.
             </p>
-            <a href="#" class="inline-flex items-center text-furniture hover:text-furniture-dark transition-colors">
-                <span class="font-medium">Tìm hiểu thêm</span>
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-            </a>
+            
         </div>
         <div class="opacity-0 animate-slide-right">
             <img src="{{ asset('images/pic/Giá bát đĩa nâng hạ AAA.webp') }}" alt="Tầm nhìn AAA" class="rounded-lg shadow-xl w-full">

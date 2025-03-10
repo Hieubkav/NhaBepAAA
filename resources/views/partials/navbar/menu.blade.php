@@ -7,7 +7,7 @@
     </a>
 
     {{-- Sản Phẩm --}}
-    <a href="/products"
+    <a href="{{route('catFilter')}}"
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('products*') ? 'text-furniture' : '' }}">
         Sản Phẩm
     </a>
@@ -28,15 +28,12 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100 transform scale-100"
              x-transition:leave-end="opacity-0 transform scale-95">
-            <a href="#" class="block px-4 py-2 text-gray-dark hover:bg-furniture hover:text-white transition-colors">Tủ Bếp</a>
-            <a href="#" class="block px-4 py-2 text-gray-dark hover:bg-furniture hover:text-white transition-colors">Kệ Bếp</a>
-
-            {{-- Phụ Kiện với Submenu --}}
-            <div class="relative" @click.stop>
-                <a href="#" class="block px-4 py-2 text-gray-dark hover:bg-furniture hover:text-white transition-colors">
-                    Phụ Kiện
+            @foreach($cats as $cat)
+                <a href="{{ route('catFilter', ['cat_id' => $cat->id]) }}"
+                   class="block px-4 py-2 text-gray-dark hover:bg-furniture hover:text-white transition-colors {{ request()->query('cat_id') == $cat->id ? 'bg-furniture text-white' : '' }}">
+                    {{ $cat->name }}
                 </a>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -64,11 +61,11 @@
             <div class="h-px bg-gray-200"></div>
         </div>
 
-        <a href="/"
+        <a href="{{route('storeFront')}}"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('/') ? 'bg-furniture text-white' : '' }}">
             Trang Chủ
         </a>
-        <a href="/products"
+        <a href="{{route('catFilter')}}"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('products*') ? 'bg-furniture text-white' : '' }}">
             Sản Phẩm
         </a>
@@ -83,16 +80,19 @@
                 </svg>
             </button>
             <div class="pl-6 space-y-1" x-show="openCategory" x-transition>
-                <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Tủ Bếp</a>
-                <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Kệ Bếp</a>
-                <a href="#" class="block px-3 py-2 text-gray hover:text-furniture transition-colors">Phụ Kiện</a>
+                @foreach($cats as $cat)
+                    <a href="{{ route('catFilter', ['cat_id' => $cat->id]) }}"
+                       class="block px-3 py-2 text-gray hover:text-furniture transition-colors {{ request()->query('cat_id') == $cat->id ? 'text-furniture' : '' }}">
+                        {{ $cat->name }}
+                    </a>
+                @endforeach
             </div>
         </div>
-        <a href="/about"
+        <a href="#about"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('about') ? 'bg-furniture text-white' : '' }}">
             Giới Thiệu
         </a>
-        <a href="/contact"
+        <a href="#contact"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('contact') ? 'bg-furniture text-white' : '' }}">
             Liên Hệ
         </a>

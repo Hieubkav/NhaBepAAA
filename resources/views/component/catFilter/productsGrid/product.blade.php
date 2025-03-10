@@ -1,7 +1,7 @@
 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
     <!-- Product Image -->
     <div class="relative group">
-        <img src="{{ asset('images/pic/KỆ DAO THỚT.webp') }}" alt="Product"
+        <img src="{{config('app.asset_url')}}/storage/{{ $product->images->first()?->url ?? 'images/logo.webp' }}" alt="{{ $product->name }}"
             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
         <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="absolute top-2 right-2 w-8 h-8">
     </div>
@@ -9,17 +9,17 @@
     <!-- Product Info -->
     <div class="p-4">
         <div class="flex items-start justify-between mb-2">
-            <h3 class="text-lg font-semibold">Kệ dao thớt đa năng</h3>
+            <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
             <div class="flex gap-1 items-center">
                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                    2 Phiên bản
+                    {{ $product->versions->count() }} Phiên bản
                 </span>
             </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="flex gap-2 mt-4">
-            <a href="#"
+            <a href="{{ route('productOverview', ['product_id' => $product->id]) }}"
                 class="flex-1 bg-blue-500 text-white text-center py-2 px-4 rounded hover:bg-blue-600 transition-colors flex items-center justify-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

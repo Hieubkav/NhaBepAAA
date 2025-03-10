@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->unsignedBigInteger('cat_id')->nullable();
+            $table->foreign('cat_id')->references('id')->on('cats')->onDelete('set null');
+            $table->boolean('is_visible')->default(false);
             $table->timestamps();
         });
     }

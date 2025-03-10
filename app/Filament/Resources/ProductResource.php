@@ -33,13 +33,44 @@ class ProductResource extends Resource
                             ->label('Tên sản phẩm')
                             ->required()
                             ->placeholder('Nhập tên sản phẩm')
-    ->maxLength(255),
+                            ->maxLength(255),
 
-                    Forms\Components\RichEditor::make('description')
+                        Forms\Components\RichEditor::make('description')
                             ->label('Mô tả')
                             ->required()
                             ->toolbarButtons(['bold', 'italic', 'link', 'orderedList', 'bulletList'])
                             ->placeholder('Nhập mô tả sản phẩm'),
+
+                        Forms\Components\Select::make('cat_id')
+                            ->label('Danh mục')
+                            ->relationship('cat', 'name')
+                            ->placeholder('Chọn danh mục')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Tên danh mục')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('description')
+                                    ->label('Mô tả'),
+                                Forms\Components\Toggle::make('is_visible')
+                                    ->label('Hiển thị')
+                                    ->default(true),
+                            ])
+                            ->editOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Tên danh mục')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\RichEditor::make('description')
+                                    ->label('Mô tả'),
+                                Forms\Components\Toggle::make('is_visible')
+                                    ->label('Hiển thị')
+                                    ->default(true),
+                            ]),
+
+                        Forms\Components\Toggle::make('is_visible')
+                            ->label('Hiển thị')
+                            ->default(true),
                     ])->columns(1)
             ]);
     }
@@ -48,24 +79,48 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('images.url')
+                    ->label('Hình ảnh')
+                    ->circular()
+                    ->limit(1),
+
                 Tables\Columns\TextColumn::make('name')
                     ->label('Tên sản phẩm')
                     ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('cat.name')
+                    ->label('Danh mục')
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('versions_count')
                     ->label('Số phiên bản')
                     ->counts('versions'),
 
+                Tables\Columns\IconColumn::make('is_visible')
+                    ->label('Hiển thị')
+                    ->boolean()
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày tạo')
                     ->dateTime('d/m/Y H:i'),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('cat_id')
+                    ->label('Danh mục')
+                    ->relationship('cat', 'name')
+                    ->placeholder('Tất cả'),
+                Tables\Filters\TernaryFilter::make('is_visible')
+                    ->label('Trạng thái hiển thị')
+                    ->placeholder('Tất cả')
+                    ->trueLabel('Đang hiển thị')
+                    ->falseLabel('Đang ẩn'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

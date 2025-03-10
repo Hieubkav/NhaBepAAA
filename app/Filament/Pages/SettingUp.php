@@ -77,8 +77,11 @@
                                 ->label('Link Facebook')
                                 ->required(),
 
-                            Forms\Components\TextInput::make('video')
-                                ->label('Link video'),
+                            Forms\Components\FileUpload::make('video')
+                                ->label('Video')
+                                ->directory('images/pic')
+                                ->acceptedFileTypes(['video/mp4', 'video/quicktime','video/webm' ])
+                                ->maxSize(50120),
 
                             Forms\Components\Textarea::make('map')
                                 ->label('Mã nhúng Google Maps')

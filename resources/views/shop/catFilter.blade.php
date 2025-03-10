@@ -13,9 +13,6 @@
         <!-- Filter và Search Bar -->
         @include('component.catFilter.filterAndSearchBar')
 
-        <!-- Products Count -->
-        @include('component.catFilter.productCount')
-
         <!-- Products Grid -->
         @include('component.catFilter.productsGrid')
     </div>

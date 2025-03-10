@@ -1,3 +1,7 @@
+@php
+    $setting = App\Models\Setting::first();
+@endphp
+
 {{-- Video Carousel Container --}}
 <div class="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-2xl">
     {{-- Background Overlay --}}
@@ -13,7 +17,7 @@
             playsinline
             poster="{{ asset('images/logo.webp') }}"
         >
-            <source src="https://enic.vn/wp-content/uploads/2024/07/video-desktop-1.mp4" type="video/mp4"
+            <source src="{{config('app.asset_url')}}/storage/{{$setting->video}}" type="video/mp4"
                     type="video/mp4">
         </video>
 
