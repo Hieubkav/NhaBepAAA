@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('zalo')->nullable();
             $table->string('video')->nullable();
-            $table->string('map')->nullable();
+            $table->text('map')->nullable();
             $table->timestamps();
         });
     }

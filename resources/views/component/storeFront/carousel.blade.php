@@ -25,13 +25,6 @@
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none"></div>
     </div>
 
-    {{-- Logo --}}
-    <div
-        class="absolute top-5 left-5 w-20 h-20 md:w-24 md:h-24 bg-contain bg-no-repeat bg-center
-               transform-gpu backdrop-blur-sm z-10"
-        style="background-image: url('{{ asset('images/logo.webp') }}');">
-    </div>
-
     {{-- Modern Text Overlay with Glassmorphism --}}
     <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center
                 bg-black/30 backdrop-blur-md rounded px-5 py-3 text-base md:text-xl lg:text-2xl font-bold

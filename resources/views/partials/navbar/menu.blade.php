@@ -1,7 +1,7 @@
 {{-- Desktop Menu --}}
 <div class="hidden md:flex items-center space-x-8">
     {{-- Trang Chủ --}}
-    <a href="/"
+    <a href="{{route('storeFront')}}"
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('/') ? 'text-furniture' : '' }}">
         Trang Chủ
     </a>
@@ -38,13 +38,13 @@
     </div>
 
     {{-- Giới Thiệu --}}
-    <a href="/about"
+    <a href="{{route('about') }}"
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('about') ? 'text-furniture' : '' }}">
         Giới Thiệu
     </a>
 
     {{-- Liên Hệ --}}
-    <a href="/contact"
+    <a href="{{route('contact') }}"
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('contact') ? 'text-furniture' : '' }}">
         Liên Hệ
     </a>
@@ -54,7 +54,7 @@
 <div class="md:hidden" x-show="mobileMenuOpen" x-transition>
     <div class="p-4 space-y-2">
         <div class="mb-6">
-            <a href="/" class="flex items-center space-x-3 mb-8">
+            <a href="{{route('storeFront')}}" class="flex items-center space-x-3 mb-8">
                 <img src="{{ asset('images/logo.webp') }}" alt="AAA Logo" class="h-12">
                 <span class="font-heading font-bold text-2xl text-furniture">AAA</span>
             </a>
@@ -88,11 +88,11 @@
                 @endforeach
             </div>
         </div>
-        <a href="#about"
+        <a href="{{route('about') }}"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('about') ? 'bg-furniture text-white' : '' }}">
             Giới Thiệu
         </a>
-        <a href="#contact"
+        <a href="{{route('contact') }}"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('contact') ? 'bg-furniture text-white' : '' }}">
             Liên Hệ
         </a>

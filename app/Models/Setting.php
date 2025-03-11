@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Setting extends Model
 {
@@ -21,4 +22,15 @@ class Setting extends Model
         'video',
         'map'
     ];
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            Cache::forget('site-settings');
+        });
+
+        static::deleted(function () {
+            Cache::forget('site-settings');
+        });
+    }
 }
