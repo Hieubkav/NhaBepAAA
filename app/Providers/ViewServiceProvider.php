@@ -17,7 +17,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-            $settings = cache()->remember('site-settings', now()->addHours(24), function () {
+            $settings = cache()->remember('site-settings-' . Setting::count(), now()->addMinutes(60), function () {
                 $settings = Setting::first();
                 
                 if (!$settings) {
@@ -34,7 +34,7 @@ class ViewServiceProvider extends ServiceProvider
             });
             
             // Thêm danh mục sản phẩm vào view
-            $cats = cache()->remember('categories', now()->addHours(24), function () {
+            $cats = cache()->remember('categories-' . Cat::count(), now()->addMinutes(60), function () {
                 return Cat::where('is_visible', true)->get();
             });
             

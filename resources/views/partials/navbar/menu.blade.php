@@ -37,6 +37,12 @@
         </div>
     </div>
 
+    {{-- Catalog --}}
+    <a href="{{route('catalog') }}"
+       class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('catalog') ? 'text-furniture' : '' }}">
+        Catalog
+    </a>
+
     {{-- Giới Thiệu --}}
     <a href="{{route('about') }}"
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('about') ? 'text-furniture' : '' }}">
@@ -88,6 +94,10 @@
                 @endforeach
             </div>
         </div>
+        <a href="{{route('catalog') }}"
+           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('catalog') ? 'bg-furniture text-white' : '' }}">
+            Catalog
+        </a>
         <a href="{{route('about') }}"
            class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('about') ? 'bg-furniture text-white' : '' }}">
             Giới Thiệu

@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
+use Filament\Forms\Components\Actions\Action;
 
 class PageResource extends Resource
 {
@@ -43,6 +45,28 @@ class PageResource extends Resource
             Forms\Components\RichEditor::make('content')
                 ->label('Nội dung')
                 ->required()
+                ->columnSpanFull(),
+
+            Forms\Components\Section::make('Tài liệu PDF')
+                ->schema([
+                    Forms\Components\FileUpload::make('pdf')
+                        ->label('File PDF')
+                        ->acceptedFileTypes(['application/pdf'])
+                        ->directory('pages/pdf')
+                        ->maxSize(10240)  // 10MB
+                        ->downloadable(),
+
+                    Forms\Components\Actions::make([
+                        Action::make('open_pdf')
+                            ->label('Xem PDF')
+                            ->icon('heroicon-o-eye')
+                            ->url(fn ($record) => $record && $record->pdf ? Storage::url($record->pdf) : null)
+                            ->openUrlInNewTab()
+                            ->visible(fn ($record) => $record && $record->pdf)
+                            ->color('success')
+                            ->button()
+                    ])
+                ])->collapsible()
                 ->columnSpanFull()
         ]);
     }
@@ -59,6 +83,16 @@ class PageResource extends Resource
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->label('Ảnh đại diện'),
 
+                Tables\Columns\TextColumn::make('pdf')
+                    ->label('Tài liệu PDF')
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) return 'Chưa có PDF';
+                        return 'Có PDF';
+                    })
+                    ->badge()
+                    ->color(fn ($state) => $state ? 'success' : 'gray')
+                    ->icon('heroicon-o-document'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày tạo')
                     ->dateTime('d/m/Y H:i')
@@ -67,7 +101,15 @@ class PageResource extends Resource
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('open_pdf')
+                    ->label('Xem PDF')
+                    ->icon('heroicon-o-eye')
+                    ->button()
+                    ->color('success')
+                    ->url(fn ($record) => $record->pdf ? Storage::url($record->pdf) : null)
+                    ->openUrlInNewTab()
+                    ->hidden(fn ($record) => !$record->pdf)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

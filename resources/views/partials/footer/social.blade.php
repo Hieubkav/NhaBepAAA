@@ -22,8 +22,8 @@
     {{-- Social Media Links --}}
     <div class="flex space-x-4">
         <a href="{{ $settings->facebook ?? '#' }}" target="_blank"
-           class="social-btn bg-furniture/10 text-furniture hover:text-white transition-all duration-300
-                 p-2 rounded-full hover:bg-furniture hover:shadow-lg hover:shadow-furniture/20
+           class="social-btn bg-furniture/10 text-white transition-all duration-300
+                 p-2 rounded-full hover:bg-white/20 hover:shadow-lg hover:shadow-white/20
                  transform hover:scale-110 hover:rotate-3 active:scale-95 group">
             <svg class="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
                  fill="currentColor" viewBox="0 0 24 24">
@@ -32,8 +32,8 @@
             <span class="sr-only">Facebook</span>
         </a>
         <a href="{{ $settings->zalo ?? '#' }}" target="_blank"
-           class="social-btn bg-furniture/10 text-furniture hover:text-white transition-all duration-300
-                 p-2 rounded-full hover:bg-furniture hover:shadow-lg hover:shadow-furniture/20
+           class="social-btn bg-furniture/10 text-white transition-all duration-300
+                 p-2 rounded-full hover:bg-white/20 hover:shadow-lg hover:shadow-white/20
                  transform hover:scale-110 hover:rotate-3 active:scale-95 group">
             <svg class="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
                  viewBox="0 0 460.1 436.6" fill="currentColor">
@@ -55,7 +55,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 70%);
         transform: scale(0);
         opacity: 0;
         transition: transform 0.5s, opacity 0.5s;

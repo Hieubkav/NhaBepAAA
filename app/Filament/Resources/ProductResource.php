@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
+use App\Models\Image;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -27,7 +28,7 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Thông tin sản phẩm')
+                Forms\Components\Section::make('Thông tin cơ bản')
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->label('Tên sản phẩm')
@@ -71,7 +72,32 @@ class ProductResource extends Resource
                         Forms\Components\Toggle::make('is_visible')
                             ->label('Hiển thị')
                             ->default(true),
-                    ])->columns(1)
+                    ])->columns(1),
+
+                Forms\Components\Section::make('Hình ảnh sản phẩm')
+                    ->schema([
+                        Forms\Components\FileUpload::make('temp_images')
+                            ->label('Hình ảnh')
+                            ->multiple()
+                            ->image()
+                            ->imageEditor()
+                            ->maxFiles(10)
+                            ->disk('public')
+                            ->directory('images/pic')
+                            ->downloadable()
+                            ->reorderable()
+                            ->columnSpanFull()
+                            ->maxSize(5120)
+                            ->imagePreviewHeight('150')
+                            ->loadingIndicatorPosition('left')
+                            ->panelLayout('grid')
+                            ->removeUploadedFileButtonPosition('center')
+                            ->uploadButtonPosition('center')
+                            ->uploadProgressIndicatorPosition('center')
+                            ->columns(4)
+                    ])
+                    ->collapsible()
+                    ->columnSpanFull()
             ]);
     }
 
@@ -133,7 +159,6 @@ class ProductResource extends Resource
     {
         return [
             RelationManagers\VersionsRelationManager::class,
-            RelationManagers\ImagesRelationManager::class,
         ];
     }
 

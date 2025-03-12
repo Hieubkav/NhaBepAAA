@@ -15,15 +15,19 @@ use App\Http\Controllers\PageController;
 Route::controller(PageController::class)->group(function () {
     // URL mới
     Route::get('/pages/{id}', 'show')
-        ->where('id', '[1-2]')
+        ->where('id', '[1-3]')
         ->name('pages.show');
 
     // Redirect từ URL cũ
     Route::get('/gioi-thieu', function() {
         return redirect()->route('pages.show', 1);
     })->name('about');
-    
+
     Route::get('/lien-he', function() {
         return redirect()->route('pages.show', 2);
     })->name('contact');
+
+    Route::get('/catalog', function() {
+        return redirect()->route('pages.show', 3);
+    })->name('catalog');
 });

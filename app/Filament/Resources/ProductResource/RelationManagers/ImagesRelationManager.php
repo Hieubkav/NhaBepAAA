@@ -29,7 +29,7 @@ class ImagesRelationManager extends RelationManager
                     ->image()
                     ->imageEditor()
                     ->directory('images/pic')
-                    ->required()
+                    ->downloadable()
                     ->columnSpanFull()
                     ->preserveFilenames(),
             ]);
