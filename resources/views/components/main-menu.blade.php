@@ -1,60 +1,90 @@
-@props(['items'])
+@props(['items' => []])
 
-<nav class="bg-white border-gray-200">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" x-data="{ open: false }">
-        {{-- Mobile menu button --}}
-        <button @click="open = !open" class="lg:hidden">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-        </button>
+<nav class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        @foreach($items as $item)
+                            @if($item->children->isEmpty())
+                                <a href="{{ $item->getUrl() }}" 
+                                   class="text-gray-dark hover:text-furniture font-medium transition-colors
+                                          {{ $item->isActive() ? 'text-furniture' : '' }}">
+                                    {{ $item->getName() }}
+                                </a>
+                            @else
+                                <div class="relative" x-data="{ open: false }">
+                                    <button @click="open = true"
+                                            @click.outside="open = false"
+                                            class="text-gray-dark hover:text-furniture font-medium transition-colors flex items-center
+                                                   {{ ($item->isActive() || $item->hasActiveChild()) ? 'text-furniture' : '' }}">
+                                        {{ $item->getName() }}
+                                        <svg class="ml-2 -mr-0.5 h-4 w-4 inline-block transform transition-transform" 
+                                             :class="{ 'rotate-180': open }"
+                                             xmlns="http://www.w3.org/2000/svg" 
+                                             viewBox="0 0 20 20" 
+                                             fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" 
+                                         x-transition:enter="transition ease-out duration-100"
+                                         x-transition:enter-start="transform opacity-0 scale-95"
+                                         x-transition:enter-end="transform opacity-100 scale-100"
+                                         x-transition:leave="transition ease-in duration-75"
+                                         x-transition:leave-start="transform opacity-100 scale-100"
+                                         x-transition:leave-end="transform opacity-0 scale-95"
+                                         class="absolute left-0 mt-2 w-48 rounded-lg shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        @foreach($item->children->sortBy('order') as $child)
+                                            <x-recursive-menu-item :item="$child" />
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        {{-- Desktop & Mobile menu --}}
-        <div :class="{'hidden': !open}" class="w-full lg:block lg:w-auto">
-            <ul class="flex flex-col lg:flex-row lg:space-x-8 lg:mt-0">
-                @foreach($items as $item)
-                    <li class="relative group" x-data="{ dropdown: false }">
-                        @if($item->children->count() > 0)
-                            <button 
-                                @click="dropdown = !dropdown"
-                                @click.away="dropdown = false"
-                                class="flex items-center py-2 px-3 {{ $item->isActive() || $item->hasActiveChild() ? 'text-blue-600' : 'text-gray-900' }} hover:text-blue-600"
-                            >
-                                {{ $item->label }}
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            
-                            <div 
-                                x-show="dropdown"
-                                class="lg:absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg lg:border border-gray-100"
-                            >
-                                <ul class="py-1">
-                                    @foreach($item->children as $child)
-                                        <li>
-                                            <a 
-                                                href="{{ $child->getUrl() }}"
-                                                class="block px-4 py-2 text-sm {{ $child->isActive() ? 'text-blue-600 bg-gray-50' : 'text-gray-900' }} hover:bg-gray-50"
-                                            >
-                                                {{ $child->label }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @else
-                            <a 
-                                href="{{ $item->getUrl() }}"
-                                class="block py-2 px-3 {{ $item->isActive() ? 'text-blue-600' : 'text-gray-900' }} hover:text-blue-600"
-                            >
-                                {{ $item->label }}
-                            </a>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
+    <!-- Mobile menu -->
+    <div class="md:hidden" 
+         x-data="{ open: false }" 
+         x-show="open" 
+         id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            @foreach($items as $item)
+                @if($item->children->isEmpty())
+                    <a href="{{ $item->getUrl() }}" 
+                       class="text-gray-dark hover:text-furniture font-medium transition-colors block px-3 py-2 rounded-md
+                              {{ $item->isActive() ? 'text-furniture' : '' }}">
+                        {{ $item->getName() }}
+                    </a>
+                @else
+                    <div class="space-y-1" x-data="{ expanded: false }">
+                        <button @click="expanded = true"
+                                @click.outside="expanded = false"
+                                class="text-gray-dark hover:text-furniture font-medium transition-colors flex items-center justify-between w-full px-3 py-2 rounded-md
+                                       {{ ($item->isActive() || $item->hasActiveChild()) ? 'text-furniture' : '' }}">
+                            <span>{{ $item->getName() }}</span>
+                            <svg class="h-4 w-4 inline-block transform transition-transform" 
+                                 :class="{ 'rotate-180': expanded }"
+                                 xmlns="http://www.w3.org/2000/svg" 
+                                 viewBox="0 0 20 20" 
+                                 fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="pl-4" x-show="expanded">
+                            @foreach($item->children->sortBy('order') as $child)
+                                <x-recursive-menu-item :item="$child" />
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
 </nav>

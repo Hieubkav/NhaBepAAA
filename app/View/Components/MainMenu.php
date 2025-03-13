@@ -14,8 +14,7 @@ class MainMenu extends Component
 
     public function render()
     {
-        $menuItems = MenuItem::with(['children', 'target'])
-            ->whereNull('parent_id')
+        $menuItems = MenuItem::whereNull('parent_id')
             ->orderBy('order')
             ->get();
 

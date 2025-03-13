@@ -13,3 +13,10 @@ AOS.init({
     mirror: true  // Set true để animation chạy khi scroll ngược lại
 });
 
+// Khởi tạo lại drawer menu
+document.addEventListener('DOMContentLoaded', function() {
+    const drawer = document.getElementById('drawer-navigation');
+    if (drawer) {
+        const initDrawer = new Drawer(drawer);
+    }
+});
