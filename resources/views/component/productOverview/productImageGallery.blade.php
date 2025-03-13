@@ -1,11 +1,9 @@
+@php
+    $product = \App\Models\Product::with('images')->findOrFail($product_id);
+@endphp
 <div x-data="{
-    mainImage: '{{ asset('images/pic/KỆ DAO THỚT.webp') }}',
-    thumbnails: [
-        '{{ asset('images/pic/KỆ DAO THỚT.webp') }}',
-        '{{ asset('images/pic/KỆ DAO THỚT (2).webp') }}',
-        '{{ asset('images/pic/KỆ DAO THỚT (3).webp') }}',
-        '{{ asset('images/pic/KỆ DAO THỚT (4).webp') }}'
-    ],
+    mainImage: '{{$product->images->first() ? config('app.asset_url')."/storage/".$product->images->first()->url : "" }}',
+    thumbnails: {{ json_encode($product->images->map(fn($image) => config('app.asset_url')."/storage/".$image->url)->toArray()) }},
     showModal: false,
     currentIndex: 0,
     changeImage(image, index) {
@@ -35,11 +33,16 @@
         if (e.target.classList.contains('modal-backdrop')) {
             this.showModal = false;
         }
+    },
+    init() {
+        window.addEventListener('version-changed', (e) => {
+            this.mainImage = e.detail.image;
+        });
     }
 }" class="space-y-6">
     <!-- Main Image with Modal -->
     <div class="relative group">
-        <img :src="mainImage" alt="Product Image"
+        <img :src="mainImage" :alt="'{{ $product->name }}'"
             class="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover rounded-xl shadow-lg cursor-zoom-in transition duration-300 ease-in-out hover:shadow-xl"
             @click="showModal = true">
 
@@ -52,16 +55,18 @@
     </div>
 
     <!-- Thumbnails -->
-    <div class="grid grid-cols-4 sm:grid-cols-4 gap-3 sm:gap-4 px-2">
-        <template x-for="(thumb, index) in thumbnails" :key="index">
-            <button @click="changeImage(thumb, index)"
-                class="relative overflow-hidden rounded-lg aspect-square group"
-                :class="{'ring-2 ring-blue-500 ring-offset-2': mainImage === thumb}">
-                <img :src="thumb" alt="Thumbnail"
-                    class="w-full h-full object-cover transform transition-all duration-300 group-hover:scale-110">
-                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-            </button>
-        </template>
+    <div x-show="thumbnails.length > 1">
+        <div class="grid grid-cols-4 sm:grid-cols-4 gap-3 sm:gap-4 px-2">
+            <template x-for="(thumb, index) in thumbnails" :key="index">
+                <button @click="changeImage(thumb, index)"
+                    class="relative overflow-hidden rounded-lg aspect-square group"
+                    :class="{'ring-2 ring-primary-500 ring-offset-2': mainImage === thumb}">
+                    <img :src="thumb" :alt="'{{ $product->name }} - ' + (index + 1)"
+                        class="w-full h-full object-cover transform transition-all duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                </button>
+            </template>
+        </div>
     </div>
 
     <!-- Image Modal -->
@@ -85,14 +90,14 @@
             </button>
 
             <!-- Navigation Buttons -->
-            <button @click="previousImage"
+            <button @click="previousImage" x-show="thumbnails.length > 1"
                 class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white/100 transition-all duration-300 transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
 
-            <button @click="nextImage"
+            <button @click="nextImage" x-show="thumbnails.length > 1"
                 class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white/100 transition-all duration-300 transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -100,16 +105,16 @@
             </button>
 
             <!-- Modal Image -->
-            <img :src="mainImage" alt="Product Image"
+            <img :src="mainImage" :alt="'{{ $product->name }}'"
                 class="max-h-[80vh] w-auto object-contain mx-auto rounded-lg shadow-2xl">
 
             <!-- Thumbnails in Modal -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2" x-show="thumbnails.length > 1">
                 <div class="flex space-x-2 bg-white/90 backdrop-blur-sm p-2 rounded-full">
                     <template x-for="(thumb, index) in thumbnails" :key="index">
                         <button @click="changeImage(thumb, index)"
-                            class="w-2.5 h-2.5 rounded-full transition-all duration-300"
-                            :class="currentIndex === index ? 'bg-blue-500 scale-125' : 'bg-gray-400 hover:bg-gray-600'">
+                            class="w-3 h-3 rounded-full transition-all duration-300"
+                            :class="currentIndex === index ? 'bg-primary-500 scale-125' : 'bg-gray-400 hover:bg-gray-600'">
                         </button>
                     </template>
                 </div>

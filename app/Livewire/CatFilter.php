@@ -17,7 +17,7 @@ class CatFilter extends Component
 
     public function mount()
     {
-        $this->current_cat_id = Request::get('cat_id');
+        $this->current_cat_id = request()->segment(2); // Lấy cat_id từ URL segment
         if ($this->current_cat_id) {
             $this->selectedCategories = [$this->current_cat_id];
         }

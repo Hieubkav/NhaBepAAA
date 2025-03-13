@@ -41,12 +41,13 @@ class MenuItem extends Model
             return $this->link ?? '#';
         }
 
-        if ($this->target_type && $this->target_id) {
-            return match($this->type) {
-                'category' => route('cat.filter', ['id' => $this->target_id]),
-                'page' => route('page.show', ['id' => $this->target_id]),
-                default => '#'
-            };
+        if ($this->type && $this->target_id) {
+            if ($this->type === 'category') {
+                return route('catFilter', $this->target_id);
+            } 
+            elseif ($this->type === 'page') {
+                return route('pages.show', $this->target_id);
+            }
         }
 
         return '#';

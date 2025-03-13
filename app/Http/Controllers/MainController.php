@@ -16,9 +16,8 @@ class MainController extends Controller
         ]);
     }
 
-    public function catFilter(Request $request)
+    public function catFilter($cat_id = null)
     {
-        $cat_id = $request->query('cat_id');
         $cats = Cat::where('is_visible', true)->get();
 
         $products = Product::query()

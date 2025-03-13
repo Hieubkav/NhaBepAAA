@@ -57,6 +57,7 @@ class MenuItemResource extends Resource
                 Forms\Components\Select::make('target_id')
                     ->label('Danh mục')
                     ->options(Cat::query()->pluck('name', 'id'))
+                    ->afterStateUpdated(fn($state, Forms\Set $set) => $set('target_type', $state ? Cat::class : null))
                     ->required()
                     ->searchable()
                     ->preload()
@@ -65,10 +66,13 @@ class MenuItemResource extends Resource
                 Forms\Components\Select::make('target_id')
                     ->label('Trang')
                     ->options(Page::query()->pluck('title', 'id'))
+                    ->afterStateUpdated(fn($state, Forms\Set $set) => $set('target_type', $state ? Page::class : null))
                     ->required()
                     ->searchable()
                     ->preload()
                     ->visible(fn (Forms\Get $get): bool => $get('type') === 'page'),
+
+                Forms\Components\Hidden::make('target_type'),
 
                 Forms\Components\TextInput::make('order')
                     ->numeric()
@@ -85,6 +89,9 @@ class MenuItemResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->label('Tên'),
+                Tables\Columns\TextColumn::make('url')
+                    ->getStateUsing(fn (MenuItem $record): string => $record->getUrl())
+                    ->label('URL'),
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
                     ->label('Loại'),

@@ -1,15 +1,15 @@
 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
     <!-- Product Image -->
-    <div class="relative group">
+    <a href="{{ route('productOverview', $product->id) }}" class="relative group">
         <img src="{{config('app.asset_url')}}/storage/{{ $product->images->first()?->url ?? 'images/logo.webp' }}" alt="{{ $product->name }}"
             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
         <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="absolute top-2 right-2 w-8 h-8">
-    </div>
+    </a>
 
     <!-- Product Info -->
     <div class="p-4">
         <div class="flex items-start justify-between mb-2">
-            <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
+            <a href="{{ route('productOverview', $product->id) }}" class="text-lg font-semibold">{{ $product->name }}</a>
             <div class="flex gap-1 items-center">
                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                     {{ $product->versions->count() }} Phiên bản
