@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'bf1a4077dff9b2bfd46c68657d6ee6f8c3ff21df',
+        'reference' => 'e65c6789c69b636d6f2480ca9b3a2d377c86cab4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -544,7 +544,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'bf1a4077dff9b2bfd46c68657d6ee6f8c3ff21df',
+            'reference' => 'e65c6789c69b636d6f2480ca9b3a2d377c86cab4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1195,15 +1195,6 @@
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'solution-forest/filament-tree' => array(
-            'pretty_version' => '2.1.5',
-            'version' => '2.1.5.0',
-            'reference' => 'e9c2db3a7bef3b75937a3267fc29dff2c753f72f',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../solution-forest/filament-tree',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'spatie/backtrace' => array(
             'pretty_version' => '1.7.1',
