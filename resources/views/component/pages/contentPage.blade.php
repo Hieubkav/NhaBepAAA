@@ -40,8 +40,11 @@
         /* PDF viewer container styling */
         #pdf-canvas {
             max-width: 100%;
+            width: 100%;
             height: auto !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 0 auto;
         }
         
         .bg-gray-100 {
@@ -50,13 +53,30 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .bg-gray-100 {
-                padding: 1rem;
-                min-height: 400px;
+                padding: 0.5rem;
+                min-height: 300px;
+                margin: 0 -1rem;
+            }
+
+            #pdf-canvas {
+                border-radius: 4px;
+                max-width: calc(100vw - 2rem);
+                width: 100%;
+            }
+
+            /* Tối ưu hiệu suất khi cuộn trên mobile */
+            #pdf-canvas {
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
             }
         }
 
@@ -64,6 +84,17 @@
         #pdf-canvas.loading {
             opacity: 0.5;
             transition: opacity 0.3s ease;
+        }
+
+        /* Thêm animation khi PDF đang tải */
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        #pdf-canvas.loading {
+            animation: pulse 1.5s infinite;
         }
     </style>
     @endpush
