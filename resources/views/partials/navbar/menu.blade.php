@@ -13,27 +13,25 @@
     </a>
 
     {{-- Danh Mục Dropdown --}}
-    <div class="relative" x-data="{ isOpen: false }" @click.away="isOpen = false">
-        <button class="text-gray-dark hover:text-furniture font-medium transition-colors flex items-center" @click="isOpen = !isOpen">
+    <div class="relative">
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" 
+                class="text-gray-dark hover:text-furniture font-medium transition-colors flex items-center" type="button">
             Danh Mục
-            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
         </button>
-        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
-             x-show="isOpen"
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 transform scale-95"
-             x-transition:enter-end="opacity-100 transform scale-100"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 transform scale-100"
-             x-transition:leave-end="opacity-0 transform scale-95">
-            @foreach($cats as $cat)
-                <a href="{{ route('catFilter', ['cat_id' => $cat->id]) }}"
-                   class="block px-4 py-2 text-gray-dark hover:bg-furniture hover:text-white transition-colors {{ request()->query('cat_id') == $cat->id ? 'bg-furniture text-white' : '' }}">
-                    {{ $cat->name }}
-                </a>
-            @endforeach
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                @foreach($cats as $cat)
+                    <li>
+                        <a href="{{ route('catFilter', ['cat_id' => $cat->id]) }}"
+                           class="block px-4 py-2 hover:bg-furniture hover:text-white transition-colors {{ request()->query('cat_id') == $cat->id ? 'bg-furniture text-white' : '' }}">
+                            {{ $cat->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 
@@ -54,57 +52,4 @@
        class="text-gray-dark hover:text-furniture font-medium transition-colors {{ request()->is('contact') ? 'text-furniture' : '' }}">
         Liên Hệ
     </a>
-</div>
-
-{{-- Mobile Menu --}}
-<div class="md:hidden" x-show="mobileMenuOpen" x-transition>
-    <div class="p-4 space-y-2">
-        <div class="mb-6">
-            <a href="{{route('storeFront')}}" class="flex items-center space-x-3 mb-8">
-                <img src="{{ asset('images/logo.webp') }}" alt="AAA Logo" class="h-12">
-                <span class="font-heading font-bold text-2xl text-furniture">AAA</span>
-            </a>
-            <div class="h-px bg-gray-200"></div>
-        </div>
-
-        <a href="{{route('storeFront')}}"
-           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('/') ? 'bg-furniture text-white' : '' }}">
-            Trang Chủ
-        </a>
-        <a href="{{route('catFilter')}}"
-           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('products*') ? 'bg-furniture text-white' : '' }}">
-            Sản Phẩm
-        </a>
-
-        {{-- Mobile Danh Mục với Menu Cấp 2 --}}
-        <div x-data="{ openCategory: false, openAccessories: false }">
-            <button @click="openCategory = !openCategory"
-                    class="flex items-center w-full px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors">
-                <span>Danh Mục</span>
-                <svg class="w-4 h-4 ml-1 transition-transform" :class="{ 'rotate-180': openCategory }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
-            <div class="pl-6 space-y-1" x-show="openCategory" x-transition>
-                @foreach($cats as $cat)
-                    <a href="{{ route('catFilter', ['cat_id' => $cat->id]) }}"
-                       class="block px-3 py-2 text-gray hover:text-furniture transition-colors {{ request()->query('cat_id') == $cat->id ? 'text-furniture' : '' }}">
-                        {{ $cat->name }}
-                    </a>
-                @endforeach
-            </div>
-        </div>
-        <a href="{{route('catalog') }}"
-           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('catalog') ? 'bg-furniture text-white' : '' }}">
-            Catalog
-        </a>
-        <a href="{{route('about') }}"
-           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('about') ? 'bg-furniture text-white' : '' }}">
-            Giới Thiệu
-        </a>
-        <a href="{{route('contact') }}"
-           class="block px-3 py-2 text-gray-dark hover:bg-furniture hover:text-white rounded-md transition-colors {{ request()->is('contact') ? 'bg-furniture text-white' : '' }}">
-            Liên Hệ
-        </a>
-    </div>
 </div>

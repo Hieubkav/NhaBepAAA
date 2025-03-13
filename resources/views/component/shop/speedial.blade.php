@@ -1,5 +1,5 @@
 <div x-data="{ open: true }"
-     class="fixed top-1/2 right-0 -translate-y-1/2 md:translate-y-0 md:top-auto md:bottom-10 z-50">
+     class="fixed top-1/2 right-0 -translate-y-1/2 md:translate-y-0 md:top-auto md:bottom-10 z-40">
     {{-- Toggle button --}}
     <button @click="open = !open"
             class="absolute -left-5 md:-left-8 top-1/2 -translate-y-1/2 w-5 md:w-8 h-10 md:h-16

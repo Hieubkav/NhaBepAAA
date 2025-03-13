@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="overflow-x-hidden">
 <head>
     <meta charset="utf-8">
 
@@ -43,12 +43,15 @@
 
     @filamentStyles
     @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
 </head>
 
-<body class="antialiased">
+<body class="antialiased overflow-x-hidden">
 
 @include('component.shop.navbar')
-<main class="bg-gray-100">
+<main class="bg-gray-100 overflow-x-hidden">
     @yield('content')
 </main>
 @include('component.shop.footer')
