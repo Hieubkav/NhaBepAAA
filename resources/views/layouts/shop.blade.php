@@ -31,7 +31,7 @@
 
 
     {{--   Thẻ tạo icon--}}
-    <link rel="icon" href="{{ asset('images/logo.webp') }}">
+    <link rel="icon" href="{{config('app.asset_url')}}/storage/{{ $settings->logo }}">
 
     <title>{{ config('app.name') }}</title>
 

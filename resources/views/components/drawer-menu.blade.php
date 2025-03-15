@@ -8,11 +8,11 @@
     <div class="flex items-center justify-between mb-6">
         <div class="flex items-center space-x-3">
             <a href="{{route('storeFront')}}" class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.webp') }}" alt="AAA Logo" class="h-12">
+                <img src="{{config('app.asset_url')}}/storage/{{ $settings->logo }}" alt="AAA Logo" class="h-12">
             </a>
         </div>
-        <button type="button" 
-                data-drawer-hide="drawer-navigation" 
+        <button type="button"
+                data-drawer-hide="drawer-navigation"
                 aria-controls="drawer-navigation"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex items-center justify-center"
                 data-drawer-close>

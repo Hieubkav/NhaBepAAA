@@ -3,7 +3,7 @@
     <a href="{{ route('productOverview', $product->id) }}" class="relative group">
         <img src="{{config('app.asset_url')}}/storage/{{ $product->images->first()?->url ?? 'images/logo.webp' }}" alt="{{ $product->name }}"
             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-        <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="absolute top-2 right-2 w-8 h-8">
+        <img src="{{config('app.asset_url')}}/storage/{{ $settings->logo }}" alt="Logo" class="absolute top-2 right-2 w-8 h-8">
     </a>
 
     <!-- Product Info -->

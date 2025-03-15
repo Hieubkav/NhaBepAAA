@@ -15,7 +15,7 @@
             loop
             muted
             playsinline
-            poster="{{ asset('images/logo.webp') }}"
+            poster="{{config('app.asset_url')}}/storage/{{ $settings->logo }}"
         >
             <source src="{{config('app.asset_url')}}/storage/{{$setting->video}}" type="video/mp4"
                     type="video/mp4">

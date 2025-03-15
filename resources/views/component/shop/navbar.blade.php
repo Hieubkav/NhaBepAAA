@@ -23,7 +23,7 @@
             <div class="flex justify-between items-center h-20">
                 {{-- Logo --}}
                 <a href="{{route('storeFront')}}" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/logo.webp') }}" alt="AAA Logo" class="h-20">
+                    <img src="{{config('app.asset_url')}}/storage/{{ $settings->logo }}" alt="AAA Logo" class="h-20">
                 </a>
 
                 {{-- Main Navigation Menu --}}
@@ -83,7 +83,7 @@
             </div>
         </div>
     </nav>
-    
+
     {{-- Drawer Menu Component --}}
     <x-drawer-menu  />
 
