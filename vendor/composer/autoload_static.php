@@ -767,6 +767,7 @@ class ComposerStaticInitdb64c92ceab9b2cd67a0c94fb6d22e55
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\ViewServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ViewServiceProvider.php',
         'App\\Providers\\VoltServiceProvider' => __DIR__ . '/../..' . '/app/Providers/VoltServiceProvider.php',
+        'App\\View\\Components\\DrawerMenu' => __DIR__ . '/../..' . '/app/View/Components/DrawerMenu.php',
         'App\\View\\Components\\MainMenu' => __DIR__ . '/../..' . '/app/View/Components/MainMenu.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',

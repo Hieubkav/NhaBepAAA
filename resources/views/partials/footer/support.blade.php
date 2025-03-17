@@ -4,8 +4,8 @@
         <li>
             <a href="#" class="hover:text-white transition-all duration-300 group
                               flex items-center hover:translate-x-1">
-                <svg class="w-4 h-4 mr-2 text-furniture-light transition-transform duration-300
-                           group-hover:text-white group-hover:scale-110"
+                <svg class="w-4 h-4 mr-2  transition-transform duration-300
+                           group-hover:text-white group-hover:scale-110 text-gray-400"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -15,8 +15,8 @@
         <li>
             <a href="#" class="hover:text-white transition-all duration-300 group
                               flex items-center hover:translate-x-1">
-                <svg class="w-4 h-4 mr-2 text-furniture-light transition-transform duration-300
-                           group-hover:text-white group-hover:scale-110"
+                <svg class="w-4 h-4 mr-2  transition-transform duration-300
+                           group-hover:text-white group-hover:scale-110 text-gray-400"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -26,8 +26,8 @@
         <li>
             <a href="#" class="hover:text-white transition-all duration-300 group
                               flex items-center hover:translate-x-1">
-                <svg class="w-4 h-4 mr-2 text-furniture-light transition-transform duration-300
-                           group-hover:text-white group-hover:scale-110"
+                <svg class="w-4 h-4 mr-2  transition-transform duration-300
+                           group-hover:text-white group-hover:scale-110 text-gray-400"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -37,8 +37,8 @@
         <li>
             <a href="#" class="hover:text-white transition-all duration-300 group
                               flex items-center hover:translate-x-1">
-                <svg class="w-4 h-4 mr-2 text-furniture-light transition-transform duration-300
-                           group-hover:text-white group-hover:scale-110"
+                <svg class="w-4 h-4 mr-2  transition-transform duration-300
+                           group-hover:text-white group-hover:scale-110 text-gray-400"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>

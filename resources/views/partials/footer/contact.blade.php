@@ -6,7 +6,7 @@
             <a href="tel:{{ $settings->sdt ?? '1900xxxx' }}"
                class="block text-white hover:text-white transition-all duration-300 group
                       flex items-center hover:translate-x-1">
-                <svg class="w-5 h-5 mr-2 text-furniture-light transition-transform duration-300
+                <svg class="w-5 h-5 mr-2 text-gray-400 transition-transform duration-300
                            group-hover:text-white group-hover:scale-110"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +19,7 @@
             <a href="mailto:{{ $settings->email }}"
                class="block text-white hover:text-white transition-all duration-300 group
                       flex items-center hover:translate-x-1">
-                <svg class="w-5 h-5 mr-2 text-furniture-light transition-transform duration-300
+                <svg class="w-5 h-5 mr-2 text-gray-400 transition-transform duration-300
                            group-hover:text-white group-hover:scale-110"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

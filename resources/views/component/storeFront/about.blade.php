@@ -8,16 +8,13 @@
     </div>
 
     {{-- Phần Tầm nhìn --}}
-    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+    <div class="grid md:grid-cols-1 gap-12 items-center mb-16">
         <div class="opacity-0 animate-slide-left">
             <h2 class="text-3xl font-heading font-semibold text-gray-dark mb-6">Tầm Nhìn & Sứ Mệnh</h2>
             <p class="text-gray mb-4 leading-relaxed">
                 AAA không ngừng đổi mới và sáng tạo, mang đến những giải pháp tối ưu cho không gian bếp hiện đại. Chúng tôi hiểu rằng căn bếp không chỉ là nơi nấu nướng, mà còn là trái tim của mỗi gia đình.
             </p>
             
-        </div>
-        <div class="opacity-0 animate-slide-right">
-            <img src="{{ asset('images/pic/Giá bát đĩa nâng hạ AAA.webp') }}" alt="Tầm nhìn AAA" class="rounded-lg shadow-xl w-full">
         </div>
     </div>
 

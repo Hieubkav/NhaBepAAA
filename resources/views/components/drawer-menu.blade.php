@@ -5,6 +5,7 @@
      tabindex="-1"
      aria-labelledby="drawer-navigation-label"
      data-drawer-placement="left">
+    
     <div class="flex items-center justify-between mb-6">
         <div class="flex items-center space-x-3">
             <a href="{{route('storeFront')}}" class="flex items-center space-x-3">
@@ -22,12 +23,44 @@
             <span class="sr-only">Đóng menu</span>
         </button>
     </div>
-    <div class="h-px bg-gray-200 mb-6"></div>
-    <ul class="space-y-2 font-medium">
-        @foreach($items as $item)
-            <li>
-                <x-recursive-menu-item :item="$item" :isDrawer="true" />
-            </li>
-        @endforeach
-    </ul>
+
+    <div class="h-px bg-gray-200 mb-4"></div>
+
+    <!-- Menu container with shadow and rounded corners -->
+    <div class="rounded-lg bg-white shadow-inner">
+        <ul class="space-y-1" x-data="{ activeMenu: null }">
+            @foreach($items as $item)
+                <li class="relative">
+                    <x-recursive-menu-item :item="$item" :isDrawer="true" />
+                    @if(!$loop->last)
+                        <div class="h-px bg-gray-100 my-1"></div>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </div>
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('drawerMenu', () => ({
+            init() {
+                this.$watch('$store.menu.activeId', (value) => {
+                    if (value) {
+                        this.closeOtherMenus(value)
+                    }
+                })
+            },
+            closeOtherMenus(activeId) {
+                // Tìm tất cả các menu đang mở và đóng chúng nếu không phải menu hiện tại
+                document.querySelectorAll('[x-data]').forEach(el => {
+                    if (el.__x && el.__x.getUnobservedData().open && el.id !== activeId) {
+                        el.__x.getUnobservedData().open = false
+                    }
+                })
+            }
+        }))
+    })
+</script>
+@endpush

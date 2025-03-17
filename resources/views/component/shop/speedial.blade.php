@@ -60,7 +60,7 @@
             {{-- Nút Quick Call --}}
             <a href="tel:yourNumber"
                class="flex flex-col items-center px-1.5 py-1 md:px-2.5 md:py-1.5
-                      bg-gray text-white rounded-full
+                      bg-furniture text-white rounded-full
                       shadow-[0_4px_12px_-2px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_-2px_rgba(0,0,0,0.25)]
                       transform transition-all duration-300
                       hover:scale-110 hover:rotate-3 active:scale-95">

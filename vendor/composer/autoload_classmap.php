@@ -69,6 +69,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Providers\\ViewServiceProvider' => $baseDir . '/app/Providers/ViewServiceProvider.php',
     'App\\Providers\\VoltServiceProvider' => $baseDir . '/app/Providers/VoltServiceProvider.php',
+    'App\\View\\Components\\DrawerMenu' => $baseDir . '/app/View/Components/DrawerMenu.php',
     'App\\View\\Components\\MainMenu' => $baseDir . '/app/View/Components/MainMenu.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => $vendorDir . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',

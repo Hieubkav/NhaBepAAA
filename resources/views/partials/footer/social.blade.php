@@ -22,8 +22,8 @@
     {{-- Social Media Links --}}
     <div class="flex space-x-4">
         <a href="{{ $settings->facebook ?? '#' }}" target="_blank"
-           class="social-btn bg-furniture/10 text-white transition-all duration-300
-                 p-2 rounded-full hover:bg-white/20 hover:shadow-lg hover:shadow-white/20
+           class="social-btn bg-[#1831f2] text-white transition-all duration-300
+                 p-2 rounded-full hover:bg-[#1877F2]/90 hover:shadow-lg hover:shadow-[#1877F2]/20
                  transform hover:scale-110 hover:rotate-3 active:scale-95 group">
             <svg class="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
                  fill="currentColor" viewBox="0 0 24 24">
@@ -32,8 +32,8 @@
             <span class="sr-only">Facebook</span>
         </a>
         <a href="{{ $settings->zalo ?? '#' }}" target="_blank"
-           class="social-btn bg-furniture/10 text-white transition-all duration-300
-                 p-2 rounded-full hover:bg-white/20 hover:shadow-lg hover:shadow-white/20
+           class="social-btn bg-[#1877F2] text-white transition-all duration-300
+                 p-2 rounded-full hover:bg-[#1877F2]/90 hover:shadow-lg hover:shadow-[#1877F2]/20
                  transform hover:scale-110 hover:rotate-3 active:scale-95 group">
             <svg class="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
                  viewBox="0 0 460.1 436.6" fill="currentColor">

@@ -18,6 +18,10 @@ class CatFilter extends Component
     public function mount()
     {
         $this->current_cat_id = request()->segment(2); // Lấy cat_id từ URL segment
+        // Lấy giá trị search từ query string
+        if (request()->has('search')) {
+            $this->search = request()->input('search');
+        }
         if ($this->current_cat_id) {
             $this->selectedCategories = [$this->current_cat_id];
         }
@@ -94,6 +98,7 @@ class CatFilter extends Component
             'cats' => $this->cats,
             'products' => $this->products,
             'current_cat_id' => $this->current_cat_id,
+            'search' => $this->search
         ]);
     }
 }

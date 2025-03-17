@@ -16,22 +16,29 @@ class MainController extends Controller
         ]);
     }
 
-    public function catFilter($cat_id = null)
+    public function catFilter(Request $request, $cat_id = null)
     {
         $cats = Cat::where('is_visible', true)->get();
+        $search = $request->input('search');
 
-        $products = Product::query()
+        $query = Product::query()
             ->when($cat_id, function($query) use ($cat_id) {
                 return $query->where('cat_id', $cat_id);
             })
             ->where('is_visible', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->when($search, function($query) use ($search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->orderBy('created_at', 'desc');
+
+        // Thực thi query
+        $products = $query->get();
 
         return view('shop.catFilter', [
             'cats' => $cats,
             'products' => $products,
-            'current_cat_id' => $cat_id
+            'current_cat_id' => $cat_id,
+            'search' => $search
         ]);
     }
 

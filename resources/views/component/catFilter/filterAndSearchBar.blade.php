@@ -42,8 +42,9 @@
                 <input wire:model.live="search"
                     type="text"
                     id="search"
-                    class="form-input w-full pl-7 text-sm rounded-md border-gray-light/30 shadow-xs focus:border-furniture-light focus:ring-0 hover:border-furniture-light/50 transition-colors"
-                    placeholder="Nhập tên sản phẩm...">
+                    class="form-input w-full pl-7 text-sm md:text-base rounded-md border-gray-light/30 shadow-xs focus:border-furniture-light focus:ring-0 hover:border-furniture-light/50 transition-colors"
+                    placeholder="Nhập tên sản phẩm..."
+                    value="{{ $search }}">
                 <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-light">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -54,7 +55,7 @@
     </div>
 
     <!-- Product Count & Clear Filters -->
-    <div class="mt-3 md:mt-4 text-xs text-gray border-t border-gray-light/20 pt-3 md:pt-4 flex justify-between items-center">
+    <div class="mt-3 md:mt-4 text-xs md:text-sm text-gray border-t border-gray-light/20 pt-3 md:pt-4 flex flex-col md:flex-row gap-2 md:gap-0 justify-between items-center">
         <div>
             Hiển thị <span class="font-medium text-furniture-DEFAULT">{{ $products->count() }}</span> trên <span class="font-medium text-furniture-DEFAULT">{{ $products->count() }}</span> sản phẩm
         </div>
