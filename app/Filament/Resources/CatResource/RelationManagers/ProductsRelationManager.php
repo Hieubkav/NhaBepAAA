@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use App\Filament\Resources\ProductResource;
 use Filament\Tables\Table;
 
 class ProductsRelationManager extends RelationManager
@@ -71,10 +72,16 @@ class ProductsRelationManager extends RelationManager
                     ->recordSelectSearchColumns(['name']),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->label('Sửa'),
-                Tables\Actions\DeleteAction::make()
-                    ->label('Xóa'),
+                Tables\Actions\Action::make('edit_product')
+                    ->label('Tới trang sản phẩm')
+                    ->icon('heroicon-m-pencil-square')
+                    ->url(fn ($record) => ProductResource::getUrl('edit', ['record' => $record]))
+                    ->openUrlInNewTab(),
+                Tables\Actions\DissociateAction::make()->label('Gỡ khỏi danh mục'),
+                // Tables\Actions\EditAction::make()
+                //     ->label('Sửa'),
+                // Tables\Actions\DeleteAction::make()
+                //     ->label('Xóa'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

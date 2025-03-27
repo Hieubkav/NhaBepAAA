@@ -18,7 +18,7 @@
                         </h2>
                         <div class="w-24 h-1 bg-furniture mx-auto"></div>
                         @if ($cat->description)
-                            <p class="mt-4 text-gray-600">{{ $cat->description }}</p>
+                            <p class="mt-4 text-gray-600">{!! $cat->description !!}</p>
                         @endif
                     </div>
 

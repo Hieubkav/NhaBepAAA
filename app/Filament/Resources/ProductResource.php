@@ -24,6 +24,16 @@ class ProductResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Sản phẩm';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'success';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

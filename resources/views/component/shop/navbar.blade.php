@@ -1,5 +1,5 @@
 <div x-data="{ searchOpen: false }">
-    <nav class="bg-white/95 shadow-lg fixed top-0 w-full z-[100] transition-transform duration-300 border-b border-gray-200/50"
+    <nav class="bg-gradient-to-b from-gray-100/95 via-gray-50/90 to-red-50/85 backdrop-blur shadow-lg fixed top-0 w-full z-[100] transition-transform duration-300 border-b border-red-100/20"
         id="navbar">
         <script>
             // Xử lý ẩn hiện navbar khi scroll
@@ -22,7 +22,7 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-20">
                 {{-- Logo --}}
-                <a href="{{route('storeFront')}}" class="flex items-center space-x-3">
+                <a href="{{route('storeFront')}}" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-[0.98]">
                     <img src="{{config('app.asset_url')}}/storage/{{ $settings->logo }}" alt="AAA Logo" class="h-20">
                 </a>
 
@@ -32,7 +32,7 @@
                 {{-- Actions --}}
                 <div class="flex items-center space-x-6">
                     {{-- Search --}}
-                    <button class="text-gray-dark hover:text-furniture transition-colors" @click="searchOpen = true">
+                    <button class="text-gray-600 hover:text-gray-900 transition-colors" @click="searchOpen = true">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>

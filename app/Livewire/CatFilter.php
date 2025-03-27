@@ -4,15 +4,18 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\Section;
 use Illuminate\Support\Facades\Request;
 
 class CatFilter extends Component
 {
     public $cats;
     public $products;
+    public $sections;
     public $current_cat_id;
     public $search = '';
     public $sortBy = 'newest';
+    public $selectedSections = [];
     public $selectedCategories = [];
 
     public function mount()
@@ -25,6 +28,7 @@ class CatFilter extends Component
         if ($this->current_cat_id) {
             $this->selectedCategories = [$this->current_cat_id];
         }
+        $this->sections = Section::where('status', true)->with('cats')->get();
         $this->filterProducts();
     }
 
@@ -35,6 +39,30 @@ class CatFilter extends Component
 
     public function updatedSortBy()
     {
+        $this->filterProducts();
+    }
+
+    public function toggleSection($sectionId)
+    {
+        $index = array_search($sectionId, $this->selectedSections);
+        if ($index !== false) {
+            unset($this->selectedSections[$index]);
+            $this->selectedSections = array_values($this->selectedSections);
+            // Khi bỏ chọn section, loại bỏ các cat thuộc section đó khỏi selectedCategories
+            $section = Section::find($sectionId);
+            if ($section) {
+                $catIds = $section->cats->pluck('id')->toArray();
+                $this->selectedCategories = array_values(array_diff($this->selectedCategories, $catIds));
+            }
+        } else {
+            $this->selectedSections[] = $sectionId;
+            // Khi chọn section, tự động chọn tất cả cat thuộc section đó
+            $section = Section::find($sectionId);
+            if ($section) {
+                $catIds = $section->cats->pluck('id')->toArray();
+                $this->selectedCategories = array_unique(array_merge($this->selectedCategories, $catIds));
+            }
+        }
         $this->filterProducts();
     }
 
@@ -53,6 +81,7 @@ class CatFilter extends Component
     public function clearFilters()
     {
         $this->selectedCategories = [];
+        $this->selectedSections = [];
         $this->search = '';
         $this->sortBy = 'newest';
         $this->filterProducts();
@@ -62,9 +91,21 @@ class CatFilter extends Component
     {
         $query = Product::query();
 
-        // Lọc theo danh mục
+        // Lọc theo section và category
+        if (!empty($this->selectedSections)) {
+            $catIds = [];
+            foreach ($this->selectedSections as $sectionId) {
+                $section = Section::find($sectionId);
+                if ($section) {
+                    $catIds = array_merge($catIds, $section->cats->pluck('id')->toArray());
+                }
+            }
+            $query->whereIn('cat_id', $catIds);
+        }
+        // Nếu có chọn category cụ thể, ưu tiên lọc theo category
         if (!empty($this->selectedCategories)) {
             $query->whereIn('cat_id', $this->selectedCategories);
+            $this->selectedSections = []; // Reset sections khi chọn category
         }
 
         // Lọc theo tên
@@ -98,6 +139,7 @@ class CatFilter extends Component
             'cats' => $this->cats,
             'products' => $this->products,
             'current_cat_id' => $this->current_cat_id,
+            'sections' => $this->sections,
             'search' => $this->search
         ]);
     }

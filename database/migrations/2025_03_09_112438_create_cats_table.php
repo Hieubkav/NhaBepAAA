@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('cats', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('section_id');
+            //status kiểu 	tinyint(1)
+            $table->boolean('status')->default(true);
             $table->string('name');
+            $table->text('thumbnail')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_visible')->default(true);
+            
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

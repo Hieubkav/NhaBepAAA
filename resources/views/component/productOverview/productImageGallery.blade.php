@@ -42,9 +42,11 @@
 }" class="space-y-6">
     <!-- Main Image with Modal -->
     <div class="relative group">
-        <img :src="mainImage" :alt="'{{ $product->name }}'"
-            class="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover rounded-xl shadow-lg cursor-zoom-in transition duration-300 ease-in-out hover:shadow-xl"
-            @click="showModal = true">
+        <div class="aspect-square w-full overflow-hidden rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl">
+            <img :src="mainImage" :alt="'{{ $product->name }}'"
+                class="w-full h-full object-cover cursor-zoom-in"
+                @click="showModal = true">
+        </div>
 
         <!-- Zoom Icon -->
         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">

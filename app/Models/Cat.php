@@ -14,10 +14,22 @@ class Cat extends Model
         'name',
         'description',
         'is_visible',
+        'thumbnail',
+        'section_id',
+        'status'
+    ];
+
+    protected $casts = [
+        'status' => 'boolean'
     ];
 
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 }

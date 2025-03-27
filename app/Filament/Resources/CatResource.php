@@ -25,6 +25,16 @@ class CatResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'primary';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,6 +45,13 @@ class CatResource extends Resource
                             ->label('Tên danh mục')
                             ->required()
                             ->maxLength(255)
+                            ->columnSpan('full'),
+
+                        Forms\Components\FileUpload::make('thumbnail')
+                            ->label('Ảnh đại diện')
+                            ->image()
+                            ->imageEditor()
+                            ->directory('cats')
                             ->columnSpan('full'),
 
                         Forms\Components\RichEditor::make('description')
@@ -58,6 +75,10 @@ class CatResource extends Resource
                     ->label('Tên danh mục')
                     ->searchable()
                     ->sortable(),
+                    
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->label('Ảnh đại diện')
+                    ->circular(),
 
                 Tables\Columns\TextColumn::make('products_count')
                     ->label('Số sản phẩm')
