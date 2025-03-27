@@ -85,6 +85,15 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label('URL')
+                    ->formatStateUsing(function ($state) {
+                        return url("/pages/{$state}");
+                    })
+                    ->copyable()
+                    ->copyMessage('Đã sao chép URL')
+                    ->url(fn ($record) => url("/pages/{$record->id}"), true),
+
                 Tables\Columns\TextColumn::make('title')
                     ->label('Tiêu đề')
                     ->searchable()

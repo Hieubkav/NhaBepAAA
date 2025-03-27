@@ -25,16 +25,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none"></div>
     </div>
 
-    {{-- Modern Text Overlay with Glassmorphism --}}
-    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 text-center
-                bg-black/30 backdrop-blur-md rounded px-5 py-3 text-base md:text-xl lg:text-2xl font-bold
-                shadow-lg border border-white/20
-                transform-gpu hover:scale-105 transition-all duration-300 z-10
-                motion-safe:hover:backdrop-blur-lg">
-        <span class="text-white">Nội Thất</span>
-        <span class="text-white">nhà bếp</span>
-        <span class="text-white">chọn AAA</span>
-    </div>
+   
 
 
 {{-- Video Autoplay Check --}}

@@ -4,7 +4,7 @@
     @include('component.storeFront.carousel')
     @include('component.storeFront.listCatProduct')
     @include('component.storeFront.catProduct')
-    @include('component.storeFront.about')
-    @include('component.storeFront.policy')
+    @include('component.storeFront.vision', ['webdesign' => \App\Models\WebDesign::first()])
+    @include('component.storeFront.services', ['webdesign' => \App\Models\WebDesign::first()])
     @include('component.storeFront.map')
 @endsection

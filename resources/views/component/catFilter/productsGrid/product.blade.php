@@ -1,7 +1,7 @@
 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
     <!-- Product Image -->
     <a href="{{ route('productOverview', $product->id) }}" class="relative group">
-        <img src="{{config('app.asset_url')}}/storage/{{ $product->images->first()?->url ?? 'images/logo.webp' }}" alt="{{ $product->name }}"
+        <img src="{{config('app.asset_url')}}/storage/{{ $product->images->first()?->url ?? $settings->tmp_pic }}" alt="{{ $product->name }}"
             class="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-105">
         <img src="{{config('app.asset_url')}}/storage/{{ $settings->logo }}" alt="Logo" class="absolute top-2 right-2 w-8 h-8">
     </a>

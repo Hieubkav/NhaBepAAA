@@ -16,11 +16,21 @@
 @if($item->children->isEmpty())
     <a href="{{ $item->getUrl() }}" 
        @class([
-           'text-gray-dark hover:text-furniture hover:bg-gray-50 font-medium transition-all',
+           'text-gray-700 hover:text-red-600 hover:bg-red-50 font-medium transition-all duration-200',
            'block w-full px-4 py-2 text-sm' => !$isDrawer,
            'flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100' => $isDrawer,
-           'text-furniture bg-gray-50' => $item->isActive()
+           'text-red-600 bg-red-50' => $item->isActive()
        ])>
+        @if(!$isDrawer && $item->isActive())
+            <div class="flex items-center">
+                <span class="flex-grow">{{ $item->getName() }}</span>
+                <svg class="w-5 h-5 text-red-500 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+        @else
+            {{ $item->getName() }}
+        @endif
         @if($isDrawer)
             <div class="flex items-center w-full">
                 <div class="flex-shrink-0 {{ $level > 0 ? "ml-{$level}x4" : '' }} flex items-center">
@@ -30,8 +40,6 @@
                 </div>
                 <span class="ml-3 text-sm">{{ $item->getName() }}</span>
             </div>
-        @else
-            {{ $item->getName() }}
         @endif
     </a>
 @else
@@ -43,10 +51,10 @@
          }">
         <button @click="toggle()"
                 @class([
-                    'text-gray-dark hover:text-furniture hover:bg-gray-50 font-medium transition-all flex items-center justify-between',
+                    'text-gray-700 hover:text-red-600 hover:bg-red-50 font-medium transition-all duration-200 flex items-center justify-between',
                     'w-full px-4 py-2 text-sm' => !$isDrawer,
                     'w-full p-2 text-gray-900 rounded-lg hover:bg-gray-100' => $isDrawer,
-                    'text-furniture bg-gray-50' => $item->isActive() || $item->hasActiveChild()
+                    'text-red-600 bg-red-50' => $item->isActive() || $item->hasActiveChild()
                 ])>
             @if($isDrawer)
                 <div class="flex items-center w-full">
@@ -66,8 +74,8 @@
                 </div>
             @else
                 <div class="flex items-center space-x-1">
-                    <span>{{ $item->getName() }}</span>
-                    <svg class="h-4 w-4 transform transition-transform duration-200" 
+                    <span class="flex-grow">{{ $item->getName() }}</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200 text-gray-400" 
                          :class="{ 'rotate-180': isOpen }"
                          xmlns="http://www.w3.org/2000/svg" 
                          viewBox="0 0 20 20" 
@@ -82,7 +90,7 @@
              x-collapse
              @class([
                  'relative bg-gray-50/50 rounded-lg mt-1' => $isDrawer,
-                 'absolute left-0 w-56 rounded-lg shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50 mt-1' => !$isDrawer
+                 'absolute left-0 w-64 rounded-lg shadow-lg py-1 bg-white/95 backdrop-blur ring-1 ring-gray-200 focus:outline-none z-50 mt-1' => !$isDrawer
              ])>
             @foreach($item->children->sortBy('order') as $child)
                 <x-recursive-menu-item :item="$child" :isDrawer="$isDrawer" />

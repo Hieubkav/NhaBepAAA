@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('brand_name');
             $table->string('solgan')->nullable();
             $table->string('logo')->nullable();
+            $table->text('tmp_pic')->nullable();
             $table->string('sdt')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();

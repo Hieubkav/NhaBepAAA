@@ -1,4 +1,4 @@
-<div x-data="{ open: true }"
+<div x-data="{ open: true, showCopied: false }"
      class="fixed top-1/2 right-0 -translate-y-1/2 md:translate-y-0 md:top-auto md:bottom-10 z-40">
     {{-- Toggle button --}}
     <button @click="open = !open"
@@ -36,7 +36,7 @@
         {{-- Container các nút --}}
         <div class="flex flex-col items-center py-1.5 md:py-3 px-2 md:px-3 space-y-1 md:space-y-2">
             {{-- Nút Zalo --}}
-            <button @click="window.open('https://zalo.me/yourNumber', '_blank')"
+            <button @click="window.open('https://zalo.me/{{ $settings->zalo }}', '_blank')"
                     class="social-btn w-7 h-7 md:w-10 md:h-10 p-0.5 md:p-1 flex items-center justify-center rounded-full
                            bg-furniture text-white
                            shadow-[0_4px_12px_-2px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_-2px_rgba(0,0,0,0.25)]
@@ -46,7 +46,7 @@
             </button>
 
             {{-- Nút Messenger --}}
-            <button @click="window.open('https://m.me/yourPage', '_blank')"
+            <button @click="window.open('{{ $settings->facebook }}', '_blank')"
                     class="social-btn w-7 h-7 md:w-10 md:h-10 p-0.5 md:p-1 flex items-center justify-center rounded-full
                            bg-furniture text-white
                            shadow-[0_4px_12px_-2px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_-2px_rgba(0,0,0,0.25)]
@@ -58,16 +58,32 @@
             </button>
 
             {{-- Nút Quick Call --}}
-            <a href="tel:yourNumber"
-               class="flex flex-col items-center px-1.5 py-1 md:px-2.5 md:py-1.5
-                      bg-furniture text-white rounded-full
-                      shadow-[0_4px_12px_-2px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_-2px_rgba(0,0,0,0.25)]
-                      transform transition-all duration-300
-                      hover:scale-110 hover:rotate-3 active:scale-95">
-                <svg class="social-icon w-4 h-4 md:w-6 md:h-6 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-            </a>
+            <button @click="
+                navigator.clipboard.writeText('{{ $settings->sdt }}');
+                showCopied = true;
+                setTimeout(() => showCopied = false, 2000)
+            "
+                    title="Click để copy số điện thoại"
+                class="group relative flex flex-col items-center px-1.5 py-1 md:px-2.5 md:py-1.5
+                       bg-furniture text-white rounded-full
+                       shadow-[0_4px_12px_-2px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_-2px_rgba(0,0,0,0.25)] cursor-pointer
+                       transform transition-all duration-300
+                       hover:scale-110 hover:rotate-3 active:scale-95">
+                <div class="flex flex-col items-center">
+                    <svg class="social-icon w-4 h-4 md:w-6 md:h-6 mb-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    {{-- <span class="text-xs md:text-sm font-medium">{{ $settings->sdt }}</span> --}}
+                </div>
+                <div x-show="showCopied"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform scale-95"
+                     x-transition:enter-end="opacity-100 transform scale-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="opacity-100 transform scale-100"
+                     x-transition:leave-end="opacity-0 transform scale-95"
+                     class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap">Đã copy!</div>
+            </button>
 
             {{-- Nút scroll to top --}}
             <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"

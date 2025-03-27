@@ -14,6 +14,7 @@ class Setting extends Model
         'brand_name',
         'solgan',
         'logo',
+        'tmp_pic',
         'sdt',
         'email',
         'address',

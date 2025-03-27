@@ -61,7 +61,7 @@
                                     <div class="relative pt-[100%]">
                                         @if ($product->images->isNotEmpty())
                                             <a href="{{ route('productOverview', $product->id) }}">
-                                                <img src="{{ config('app.asset_url') }}/storage/{{ $product->images->first()->url }}"
+                                                <img src="{{ config('app.asset_url') }}/storage/{{ $product->images->first()->url ?? $settings->tmp_pic }}"
                                                     alt="{{ $product->name }}"
                                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                             </a>

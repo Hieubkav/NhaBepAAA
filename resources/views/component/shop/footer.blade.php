@@ -25,7 +25,7 @@
 
         {{-- Copyright Section --}}
         <div class="border-t border-furniture-light/20 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; {{ date('Y') }} AAA. Tất cả quyền được bảo lưu.</p>
+            <p>&copy; {{ date('Y') }} {{ $settings->brand_name }}. Tất cả quyền được bảo lưu.</p>
         </div>
     </div>
 </footer>

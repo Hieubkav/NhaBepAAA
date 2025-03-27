@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cat extends Model
@@ -31,5 +32,16 @@ class Cat extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            Cache::forget('categories-list');
+        });
+        
+        static::deleted(function () {
+            Cache::forget('categories-list');
+        });
     }
 }

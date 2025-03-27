@@ -51,6 +51,13 @@
                                 ->image()
                                 ->directory('images')
                                 ->required(),
+                                
+                            Forms\Components\FileUpload::make('tmp_pic')
+                                ->label('Ảnh tạm thời')
+                                ->image()
+                                ->directory('images/tmp')
+                                ->maxSize(5120)
+                                ->required(),
                         ]),
 
                     Forms\Components\Section::make('Thông tin liên hệ')

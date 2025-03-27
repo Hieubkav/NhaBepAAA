@@ -47,7 +47,7 @@
                                     ->first();
                             @endphp
 
-                            <img src="{{ $firstImage ? config('app.asset_url').'/storage/'.$firstImage->url : asset('images/placeholder.jpg') }}"
+                            <img src="{{ $cat->thumbnail ? config('app.asset_url').'/storage/'.$cat->thumbnail : asset('images/placeholder.jpg') }}"
                                 alt="{{ $cat->name }}"
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300"></div>

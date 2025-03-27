@@ -39,19 +39,27 @@
                                  x-transition:leave="transition ease-in duration-150"
                                  x-transition:leave-start="opacity-100 translate-y-0"
                                  x-transition:leave-end="opacity-0 -translate-y-2"
-                                 class="absolute left-0 mt-1 w-72 rounded-lg shadow-lg bg-white/95 backdrop-blur ring-1 ring-gray-200 focus:outline-none z-50">
-                                <div class="py-2">
+                                 class="absolute left-0 mt-1 w-72 rounded-lg shadow-lg bg-white/95 backdrop-blur ring-1 ring-gray-200 focus:outline-none z-50"
+                 style="max-height: calc(100vh - 100px); overflow-y: auto;">
+                                <div class="py-2 grid gap-0.5">
                                     @foreach(\App\Models\Section::where('status', true)->get() as $section)
-                                        <a href="{{ route('sections.show', $section->id) }}" 
-                                           class="flex items-center px-4 py-3 hover:bg-gray-50 group transition-colors duration-200">
+                                        <a href="{{ route('sections.show', $section->id) }}"
+                                           class="flex items-center px-4 py-3 hover:bg-red-50 group transition-colors duration-200">
                                             @if($section->icon)
-                                                <div class="w-8 h-8 rounded-lg bg-red-100 group-hover:bg-red-200 flex items-center justify-center transition-colors duration-200 mr-3">
+                                                <div class="w-8 h-8 rounded-lg bg-red-100 group-hover:bg-red-200 flex items-center justify-center transition-all duration-200 mr-3">
                                                     <img src="{{ asset('storage/' . $section->icon) }}" 
                                                          alt="{{ $section->title }} icon" 
-                                                         class="w-5 h-5">
+                                                         class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
                                                 </div>
                                             @endif
-                                            <span class="text-gray-700 group-hover:text-gray-900">{{ $section->title }}</span>
+                                            <div class="flex items-center justify-between flex-grow">
+                                <span class="text-gray-700 group-hover:text-red-600 transition-colors duration-200">
+                                    {{ $section->title }}
+                                </span>
+                                <svg class="w-5 h-5 text-gray-400 group-hover:text-red-500 transform group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </div>
                                         </a>
                                     @endforeach
                                 </div>
@@ -61,9 +69,18 @@
                         @foreach($items as $item)
                             @if($item->children->isEmpty())
                                 <a href="{{ $item->getUrl() }}" 
-                                   class="text-gray-700 hover:text-gray-900 hover:bg-red-200/80 font-medium transition-all duration-200 px-3 py-2 rounded-md
-                                          {{ $item->isActive() ? 'text-red-600' : '' }}">
-                                    {{ $item->getName() }}
+                                   class="text-gray-700 hover:text-red-600 hover:bg-red-50 font-medium transition-all duration-200 px-3 py-2 rounded-md
+                                          {{ $item->isActive() ? 'text-red-600 bg-red-50' : '' }}">
+                                    <div class="flex items-center space-x-1">
+                        <span>{{ $item->getName() }}</span>
+                        @if($item->isActive())
+                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" 
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        @endif
+                    </div>
                                 </a>
                             @else
                                 <div class="relative" x-data="{ open: false }" @click.away="open = false">

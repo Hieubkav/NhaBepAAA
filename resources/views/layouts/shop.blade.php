@@ -33,7 +33,7 @@
     {{--   Thẻ tạo icon--}}
     <link rel="icon" href="{{config('app.asset_url')}}/storage/{{ $settings->logo }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ $settings->brand_name }}</title>
 
     <style>
         [x-cloak] {
