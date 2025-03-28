@@ -6,5 +6,5 @@
     @include('component.storeFront.catProduct')
     @include('component.storeFront.vision', ['webdesign' => \App\Models\WebDesign::first()])
     @include('component.storeFront.services', ['webdesign' => \App\Models\WebDesign::first()])
-    @include('component.storeFront.map')
+    @include('component.storeFront.map', ['webdesign' => \App\Models\WebDesign::first()])
 @endsection

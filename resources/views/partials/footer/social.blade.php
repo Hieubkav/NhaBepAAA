@@ -31,7 +31,7 @@
             </svg>
             <span class="sr-only">Facebook</span>
         </a>
-        <a href="{{ $settings->zalo ?? '#' }}" target="_blank"
+        <a href="https://zalo.me/{{ $settings->zalo ?? '#' }}" target="_blank"
            class="social-btn bg-[#1877F2] text-white transition-all duration-300
                  p-2 rounded-full hover:bg-[#1877F2]/90 hover:shadow-lg hover:shadow-[#1877F2]/20
                  transform hover:scale-110 hover:rotate-3 active:scale-95 group">

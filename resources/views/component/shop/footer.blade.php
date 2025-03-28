@@ -9,7 +9,7 @@
 
             {{-- Support Section --}}
             <div class="lg:col-span-1">
-                @include('partials.footer.support')
+                @include('partials.footer.support', ['webdesign' => \App\Models\WebDesign::first()])
             </div>
 
             {{-- Contact & Payment Section --}}
